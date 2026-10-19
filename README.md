@@ -79,7 +79,7 @@ graph, with the 2258-edge graph's certificates alongside in `certificates/`.
 | 4 | 509 vertices, minimum degree 4 (so no vertex is removable) | OK |
 | 5 | distinct from `G*`: neither a subset nor a superset | OK, 6 edges differ |
 | 6 | chi >= 5: UNSAT with a pinned triangle (all three of its edges present) | OK, 8s |
-| 7 | chi >= 5: UNSAT with **no** pin and no symmetry breaking at all | OK, 379s (2258: 337s) |
+| 7 | chi >= 5: UNSAT with **no** pin and no symmetry breaking at all | OK, 1259s (2257: 379s, 2258: 337s) |
 | 8 | 5-colourable, so chi is exactly 5 | OK, 0 monochromatic edges |
 
 Four independent search workers reached 2257 edges from 2258 by the same kind of
