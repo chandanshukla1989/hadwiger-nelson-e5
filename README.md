@@ -1,17 +1,17 @@
-# e5 <= 2256: a 5-chromatic unit-distance graph in the plane with 2256 edges
+# e5 <= 2255: a 5-chromatic unit-distance graph in the plane with 2255 edges
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23462836.svg)](https://doi.org/10.5281/zenodo.23462836)
 
-**Cite as:** Chandan Shukla, *e5 <= 2256: a 509-vertex, 2256-edge 5-chromatic
+**Cite as:** Chandan Shukla, *e5 <= 2255: a 509-vertex, 2255-edge 5-chromatic
 unit-distance graph*, 2026. DOI: [10.5281/zenodo.23462836](https://doi.org/10.5281/zenodo.23462836)
 
 This repository contains 509-vertex unit-distance graphs in the Euclidean plane
 with chromatic number 5 and **2257** and **2258** edges, together with
 everything needed to verify those claims independently.
 
-They improve the previous best bound of **2259** edges (md-amer, 2026) by three
+They improve the previous best bound of **2259** edges (md-amer, 2026) by four
 edges, and the published bound of **2406** edges (de Grey and Parts, 2022) by
-150 edges.
+151 edges.
 
 ## Records for 5-chromatic unit-distance graphs in the plane
 
@@ -23,7 +23,8 @@ edges, and the published bound of **2406** edges (de Grey and Parts, 2022) by
 | md-amer (2026), submitted to Geombinatorics | 509 | 2259 |
 | this repository, first graph | 509 | 2258 |
 | this repository | 509 | 2257 |
-| **this repository, best** | 509 | **2256** |
+| this repository | 509 | 2256 |
+| **this repository, best** | 509 | **2255** |
 
 The vertex record of 509 (Parts, 2020) is untouched - this graph uses exactly
 Parts's 509 points.
@@ -115,7 +116,8 @@ drat-trim certificates/4col_2258_pinned.cnf certificates/4col_2258_pinned.drat
 
 ## Files
 
-- `edges2256.json` - the best graph, as vertex-index pairs into `v509e2442.vtx`
+- `edges2255.json` - the best graph, as vertex-index pairs into `v509e2442.vtx`
+- `edges2256.json` - the 2256-edge graph
 - `edges2257.json` - the 2257-edge graph
 - `edges2258.json` - the intermediate 2258-edge graph
 - `v509e2442.vtx` - Parts's 509 points, algebraic coordinates, unchanged
