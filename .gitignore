@@ -1,2 +1,7 @@
 __pycache__/
 *.pyc
+
+vr/
+fjson*/
+fleet/
+ffr*/

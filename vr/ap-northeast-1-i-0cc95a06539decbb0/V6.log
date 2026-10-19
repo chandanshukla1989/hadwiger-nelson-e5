@@ -1,4 +1,0 @@
-[i-0cc95a06539decbb0-6-edges2442] candidate points (degree >= 4): 697
-[i-0cc95a06539decbb0-6-edges2442] base: |V|=509 |E|=2442 from edges2442.json
-[i-0cc95a06539decbb0-6-edges2442] 2000 tried, 0 moves, best |V|=509 (884s)
-[i-0cc95a06539decbb0-6-edges2442] plateau move 1: +p(deg 6) -v217, |V|=509 |E|=2443 (1513s)

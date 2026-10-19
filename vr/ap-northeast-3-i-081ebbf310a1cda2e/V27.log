@@ -1,4 +1,0 @@
-[i-081ebbf310a1cda2e-27-edges2442] candidate points (degree >= 4): 697
-[i-081ebbf310a1cda2e-27-edges2442] base: |V|=509 |E|=2442 from edges2442.json
-[i-081ebbf310a1cda2e-27-edges2442] 2000 tried, 0 moves, best |V|=509 (884s)
-[i-081ebbf310a1cda2e-27-edges2442] 4000 tried, 0 moves, best |V|=509 (1795s)

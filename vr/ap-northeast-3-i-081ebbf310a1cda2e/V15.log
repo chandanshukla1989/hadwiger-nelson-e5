@@ -1,3 +1,0 @@
-[i-081ebbf310a1cda2e-15-edges2442] candidate points (degree >= 4): 697
-[i-081ebbf310a1cda2e-15-edges2442] base: |V|=509 |E|=2442 from edges2442.json
-[i-081ebbf310a1cda2e-15-edges2442] plateau move 1: +p(deg 6) -v301, |V|=509 |E|=2442 (662s)
