@@ -16,7 +16,7 @@ that URL here, so older links still work.)*
 
 A 509-vertex unit-distance graph in the Euclidean plane with chromatic number 5
 and **2248 edges**, together with everything needed to verify that claim
-independently, and the chain of intermediate graphs that led to it.
+independently.
 
 ## Records for 5-chromatic unit-distance graphs in the plane
 
@@ -34,14 +34,13 @@ uses exactly Parts's 509 points.
 
 ## How it was obtained
 
-The construction method is withheld pending publication.  It is a local-search
-reduction applied to md-amer's 2259-edge graph, carried out on Parts's 509
-points; the graphs below are its output.
+The construction method, and the intermediate graphs it passed through, are
+withheld pending publication.
 
-This does not affect checking the result: every graph here comes with a DIMACS
-CNF, a DRAT refutation, a drat-trim log and an explicit 5-colouring, and
-`verify.py` re-derives every claim from Parts's published coordinates.  The
-method is not needed to confirm the bound.
+This does not affect checking the result.  The graph comes with a DIMACS CNF, a
+DRAT refutation, a drat-trim log and an explicit 5-colouring, and `verify.py`
+re-derives every claim from Parts's published coordinates using exact integer
+arithmetic.  None of that needs the method.
 
 ## Verification
 
@@ -51,8 +50,8 @@ python verify.py edges2251.json          # checks 1-6 and 8
 python verify.py edges2248.json --full   # adds the unpinned UNSAT (slow)
 ```
 
-`verify.py` takes any edge list in this repository and re-derives every fact
-from Parts's published coordinates.  It checks, in order:
+`verify.py` re-derives every fact from Parts's published coordinates.  It
+checks, in order:
 
 | # | check | result for `edges2248.json` |
 |---|---|---|
@@ -92,16 +91,12 @@ exhaustive 1- and 2-edge-criticality over all 2259 single edges and all
 ## Files
 
 - `edges2248.json` - the best graph
-- `edges2249.json` - the 2249-edge graph
-- `edges2250.json` - the 2250-edge graph
 - `edges2251.json` - the 2251-edge graph, as vertex-index pairs into `v509e2442.vtx`
-- `edges2252.json` ... `edges2258.json` - the intermediate graphs
 - `v509e2442.vtx` - Parts's 509 points, algebraic coordinates, unchanged
 - `verify.py` - verifies any of the above; trusts nothing from the search
 - `mq.py`, `loadvtx.py` - exact arithmetic in Q(sqrt3, sqrt5, sqrt11)
-- `certificates/` - per graph: the DIMACS CNF, the DRAT refutation, the
-  drat-trim log, an explicit 5-colouring, and the edge-level diff against the
-  graph it came from
+- `certificates/` - the DIMACS CNF, the DRAT refutation, the drat-trim log and
+  an explicit 5-colouring
 
 ## References
 
