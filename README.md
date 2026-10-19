@@ -1,5 +1,10 @@
 # e5 <= 2256: a 5-chromatic unit-distance graph in the plane with 2256 edges
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23462836.svg)](https://doi.org/10.5281/zenodo.23462836)
+
+**Cite as:** Chandan Shukla, *e5 <= 2256: a 509-vertex, 2256-edge 5-chromatic
+unit-distance graph*, 2026. DOI: [10.5281/zenodo.23462836](https://doi.org/10.5281/zenodo.23462836)
+
 This repository contains 509-vertex unit-distance graphs in the Euclidean plane
 with chromatic number 5 and **2257** and **2258** edges, together with
 everything needed to verify those claims independently.
