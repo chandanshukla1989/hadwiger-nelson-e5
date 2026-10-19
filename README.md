@@ -46,7 +46,7 @@ arithmetic.  None of that needs the method.
 
 ```
 pip install sympy python-sat[pblib,aiger]
-python verify.py edges2251.json          # checks 1-6 and 8
+python verify.py edges2248.json          # checks 1-6 and 8
 python verify.py edges2248.json --full   # adds the unpinned UNSAT (slow)
 ```
 
@@ -91,7 +91,7 @@ exhaustive 1- and 2-edge-criticality over all 2259 single edges and all
 ## Files
 
 - `edges2248.json` - the best graph
-- `edges2251.json` - the 2251-edge graph, as vertex-index pairs into `v509e2442.vtx`
+- `edges2248.json` - the graph, as vertex-index pairs into `v509e2442.vtx`
 - `v509e2442.vtx` - Parts's 509 points, algebraic coordinates, unchanged
 - `verify.py` - verifies any of the above; trusts nothing from the search
 - `mq.py`, `loadvtx.py` - exact arithmetic in Q(sqrt3, sqrt5, sqrt11)
