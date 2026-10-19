@@ -61,7 +61,7 @@ checks, in order:
 | 4 | 509 vertices, minimum degree 4 (so no vertex is removable) | OK |
 | 5 | the pinned triangle has all three of its edges in the graph | OK |
 | 6 | chi >= 5: UNSAT with that triangle pinned to colours 0,1,2 | OK, 6s |
-| 7 | chi >= 5: UNSAT with **no** pin and no symmetry breaking | OK |
+| 7 | chi >= 5: UNSAT with **no** pin and no symmetry breaking | OK, 358s |
 | 8 | 5-colourable, so chi is exactly 5 | OK, 0 monochromatic edges |
 
 Check 2 is integer arithmetic over the 8-dimensional basis of
