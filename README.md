@@ -34,37 +34,14 @@ uses exactly Parts's 509 points.
 
 ## How it was obtained
 
-md-amer's 2259-edge graph `G*` is **edge-critical**: deleting any single edge
-makes it 4-colourable.  Monotonicity then rules out deleting any *set* of edges,
-since a subgraph of a 4-colourable graph is 4-colourable.  `G*` is moreover its
-own UNSAT core - the refutation needs all 2259 of its edges - so core-guided
-reduction cannot shrink it either.  By every standard test it looks final.
+The construction method is withheld pending publication.  It is a local-search
+reduction applied to md-amer's 2259-edge graph, carried out on Parts's 509
+points; the graphs below are its output.
 
-It is not.  Those tests do not cover a **plateau move**: add back one of the
-edges previously deleted from Parts's graph, delete a *different* edge, and land
-on an equal-sized but structurally different graph, which may itself have a
-removable edge.  The first one:
-
-```
-plateau move : + (16, 202)   -> 2260 edges
-               - (16, 167)   -> 2259 edges, a different graph
-descent      : - (64, 124)   -> 2258 edges
-```
-
-Repeating that gives the chain
-
-```
-2259  ->  2258  ->  2257  ->  2256  ->  2255  ->  2253  ->  2252  ->  2251  ->  2250  ->  2249
-```
-
-Each graph in the chain was edge-critical when it was reached, and each was
-broken the same way.
-
-**The point worth taking away is methodological: edge-criticality is not
-edge-minimality.**  A graph can be edge-critical, 2-edge-critical, and an
-UNSAT-core fixpoint and still not be edge-minimal.  Searches that stop at the
-first critical graph stop too early - which may be why the bound sat at 2406
-for four years.
+This does not affect checking the result: every graph here comes with a DIMACS
+CNF, a DRAT refutation, a drat-trim log and an explicit 5-colouring, and
+`verify.py` re-derives every claim from Parts's published coordinates.  The
+method is not needed to confirm the bound.
 
 ## Verification
 
@@ -121,7 +98,6 @@ exhaustive 1- and 2-edge-criticality over all 2259 single edges and all
 - `v509e2442.vtx` - Parts's 509 points, algebraic coordinates, unchanged
 - `verify.py` - verifies any of the above; trusts nothing from the search
 - `mq.py`, `loadvtx.py` - exact arithmetic in Q(sqrt3, sqrt5, sqrt11)
-- `shrink2259.py`, `drat2258.py` - the plateau search, and DRAT emission
 - `certificates/` - per graph: the DIMACS CNF, the DRAT refutation, the
   drat-trim log, an explicit 5-colouring, and the edge-level diff against the
   graph it came from
