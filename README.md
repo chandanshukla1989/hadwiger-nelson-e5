@@ -1,21 +1,22 @@
-# e5 <= 2251: a 5-chromatic unit-distance graph in the plane with 2255 edges
+# e5 <= 2251: 5-chromatic unit-distance graphs in the plane with few edges
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23462835.svg)](https://doi.org/10.5281/zenodo.23462835)
-
-This DOI is the Zenodo *concept* DOI: it always resolves to the newest version,
-so it stays correct as the bound improves.  Each release also has its own
-version DOI if you need to pin to a specific graph.
 
 **Cite as:** Chandan Shukla, *e5 <= 2251: a 509-vertex, 2251-edge 5-chromatic
 unit-distance graph*, 2026. DOI: [10.5281/zenodo.23462835](https://doi.org/10.5281/zenodo.23462835)
 
-This repository contains 509-vertex unit-distance graphs in the Euclidean plane
-with chromatic number 5 and **2257** and **2258** edges, together with
-everything needed to verify those claims independently.
+That DOI is Zenodo's *concept* DOI: it always resolves to the newest version, so
+it stays correct as the bound improves.  Each release also has its own version
+DOI if you need to pin to one specific graph.
 
-They improve the previous best bound of **2259** edges (md-amer, 2026) by eight
-edges, and the published bound of **2406** edges (de Grey and Parts, 2022) by
-155 edges.
+*(The repository is named after the first graph in it.  The current best is
+2251 edges; the name is kept so that links already in circulation keep working.)*
+
+---
+
+A 509-vertex unit-distance graph in the Euclidean plane with chromatic number 5
+and **2251 edges**, together with everything needed to verify that claim
+independently, and the chain of intermediate graphs that led to it.
 
 ## Records for 5-chromatic unit-distance graphs in the plane
 
@@ -25,122 +26,103 @@ edges, and the published bound of **2406** edges (de Grey and Parts, 2022) by
 | Parts (2020), vertex-minimal | **509** | 2442 |
 | de Grey & Parts (2022), published e5 bound | 509 | 2406 |
 | md-amer (2026), submitted to Geombinatorics | 509 | 2259 |
-| this repository, first graph | 509 | 2258 |
-| this repository | 509 | 2257 |
-| this repository | 509 | 2256 |
-| this repository | 509 | 2255 |
-| this repository | 509 | 2253 |
-| this repository | 509 | 2252 |
-| **this repository, best** | 509 | **2251** |
+| **this repository** | 509 | **2251** |
 
-The vertex record of 509 (Parts, 2020) is untouched - this graph uses exactly
-Parts's 509 points.
+That is **155 edges** below the published bound and **8** below the previous
+best.  The vertex record of 509 (Parts, 2020) is untouched: every graph here
+uses exactly Parts's 509 points.
 
 ## How it was obtained
 
 md-amer's 2259-edge graph `G*` is **edge-critical**: deleting any single edge
-makes it 4-colourable.  Monotonicity then rules out deleting any *set* of
-edges, since a subgraph of a 4-colourable graph is 4-colourable.  `G*` is
-moreover its own UNSAT core - the refutation needs every one of its 2259 edges -
-so core-guided reduction cannot shrink it either.  By every standard test it
-looks final.
+makes it 4-colourable.  Monotonicity then rules out deleting any *set* of edges,
+since a subgraph of a 4-colourable graph is 4-colourable.  `G*` is moreover its
+own UNSAT core - the refutation needs all 2259 of its edges - so core-guided
+reduction cannot shrink it either.  By every standard test it looks final.
 
-It is not.  What those tests do not cover is a **plateau move**: add back one of
-the edges previously deleted from Parts's graph, delete a *different* edge, and
-land on an equal-sized but structurally different graph, which may itself have a
-removable edge.  Here one such move was enough:
-
-```
-plateau move : + (16, 202)              -> 2260 edges
-               - (16, 167)              -> 2259 edges, a different graph
-descent      : - (64, 124)              -> 2258 edges
-```
-
-So the 2258-edge graph differs from `G*` in exactly three edges.
-
-Repeating the same move on the 2258-edge graph gives one more edge:
+It is not.  Those tests do not cover a **plateau move**: add back one of the
+edges previously deleted from Parts's graph, delete a *different* edge, and land
+on an equal-sized but structurally different graph, which may itself have a
+removable edge.  The first one:
 
 ```
-plateau move : + (41, 263)              -> 2259 edges
-               - (49, 56)               -> 2258 edges, a different graph
-descent      : - (76, 197)              -> 2257 edges
+plateau move : + (16, 202)   -> 2260 edges
+               - (16, 167)   -> 2259 edges, a different graph
+descent      : - (64, 124)   -> 2258 edges
 ```
 
-The 2257-edge graph therefore differs from `G*` in six edges.  That the move
-worked twice, on two graphs that each passed every criticality test available,
-is the substance of the observation below.
+Repeating that gives the chain
+
+```
+2259  ->  2258  ->  2257  ->  2256  ->  2255  ->  2253  ->  2252  ->  2251
+```
+
+Each graph in the chain was edge-critical when it was reached, and each was
+broken the same way.
 
 **The point worth taking away is methodological: edge-criticality is not
-optimality.** A graph can be edge-critical and a core fixpoint and still not be
-edge-minimal. Searches that stop at the first critical graph stop too early.
+edge-minimality.**  A graph can be edge-critical, 2-edge-critical, and an
+UNSAT-core fixpoint and still not be edge-minimal.  Searches that stop at the
+first critical graph stop too early - which may be why the bound sat at 2406
+for four years.
 
 ## Verification
 
-Every check re-derives its facts from Parts's published coordinates and the
-edge list in this repository; nothing is taken on trust from the search.
+```
+pip install sympy python-sat[pblib,aiger]
+python verify.py edges2251.json          # checks 1-6 and 8
+python verify.py edges2251.json --full   # adds the unpinned UNSAT (slow)
+```
 
-| # | check | result |
-|---|---|---|
-Both graphs pass the same nine checks; the figures below are for the 2257-edge
-graph, with the 2258-edge graph's certificates alongside in `certificates/`.
+`verify.py` takes any edge list in this repository and re-derives every fact
+from Parts's published coordinates.  It checks, in order:
 
-| # | check | result |
+| # | check | result for `edges2251.json` |
 |---|---|---|
-| 1 | 2257 edges, no duplicates, no self-loops | OK |
-| 2 | every edge at **exact** unit distance in Q(sqrt3, sqrt5, sqrt11) | OK, 2257/2257 |
+| 1 | edge count, no duplicates, no self-loops | OK, 2251 |
+| 2 | every edge at **exact** unit distance in Q(sqrt3, sqrt5, sqrt11) | OK, 2251/2251 |
 | 3 | subgraph of Parts's published 2442-edge graph | OK |
 | 4 | 509 vertices, minimum degree 4 (so no vertex is removable) | OK |
-| 5 | distinct from `G*`: neither a subset nor a superset | OK, 6 edges differ |
-| 6 | chi >= 5: UNSAT with a pinned triangle (all three of its edges present) | OK, 8s |
-| 7 | chi >= 5: UNSAT with **no** pin and no symmetry breaking at all | OK, 1259s (2257: 379s, 2258: 337s) |
+| 5 | the pinned triangle has all three of its edges in the graph | OK |
+| 6 | chi >= 5: UNSAT with that triangle pinned to colours 0,1,2 | OK, 6s |
+| 7 | chi >= 5: UNSAT with **no** pin and no symmetry breaking | OK |
 | 8 | 5-colourable, so chi is exactly 5 | OK, 0 monochromatic edges |
 
-Four independent search workers reached 2257 edges from 2258 by the same kind of
-plateau move, so that descent is reproducible rather than a single lucky run.
-| 9 | DRAT refutation checked by **drat-trim** | **s VERIFIED**, 5.8s |
-
 Check 2 is integer arithmetic over the 8-dimensional basis of
-Q(sqrt3, sqrt5, sqrt11) with all coordinates at denominator 96 - no floating
-point and no tolerance anywhere.  Check 9 is the one that matters to a third
-party, since drat-trim is not our code: it re-derived the refutation
-independently, reporting 8637 of 9540 clauses and 99931 of 182297 lemmas in the
-core over 6,573,273 resolution steps, with 0 RAT lemmas (and 5,401,810 steps
-for the 2258-edge graph).
+Q(sqrt3, sqrt5, sqrt11), all coordinates at denominator 96 - no floating point
+and no tolerance anywhere.  Check 6 is already a complete proof of chi >= 5,
+since fixing a present triangle's colours is without loss of generality by
+colour-permutation symmetry; check 7 removes even that assumption.
+
+Independently of `verify.py`, each graph has a DRAT refutation checked by
+**drat-trim**, which is not our code:
+
+```
+drat-trim certificates/4col_2251_pinned.cnf certificates/4col_2251_pinned.drat
+```
+
+```
+s VERIFIED      8641 of 9516 clauses in core
+                121016 of 202955 lemmas in core
+                8305689 resolution steps, 0 RAT lemmas
+```
 
 As a by-product, md-amer's `G*` was itself re-verified here before being used as
 a base: exact unit distances, unpinned UNSAT, an explicit 5-colouring, and
-exhaustive 1- and 2-edge-criticality (all 2259 single edges and all 2,550,411
-edge pairs).
-
-## Reproducing the verification
-
-```
-pip install sympy python-sat[pblib,aiger]
-python verify2258.py          # checks 1-6, and 7-8 unpinned
-python drat2258.py            # writes the CNF and a DRAT refutation
-drat-trim certificates/4col_2258_pinned.cnf certificates/4col_2258_pinned.drat
-```
+exhaustive 1- and 2-edge-criticality over all 2259 single edges and all
+2,550,411 edge pairs.
 
 ## Files
 
-- `edges2251.json` - the best graph
-- `edges2252.json` - the 2252-edge graph
-- `edges2253.json` - the 2253-edge graph
-- `edges2255.json` - the 2255-edge graph, as vertex-index pairs into `v509e2442.vtx`
-- `edges2256.json` - the 2256-edge graph
-- `edges2257.json` - the 2257-edge graph
-- `edges2258.json` - the intermediate 2258-edge graph
+- `edges2251.json` - the best graph, as vertex-index pairs into `v509e2442.vtx`
+- `edges2252.json` ... `edges2258.json` - the intermediate graphs
 - `v509e2442.vtx` - Parts's 509 points, algebraic coordinates, unchanged
-- `verify2258.py` - checks 1-8; trusts nothing from the search
-- `drat2258.py` - emits the DIMACS CNF and the DRAT refutation
-- `shrink2259.py` - the plateau-move search that found this graph
+- `verify.py` - verifies any of the above; trusts nothing from the search
 - `mq.py`, `loadvtx.py` - exact arithmetic in Q(sqrt3, sqrt5, sqrt11)
-- `certificates/`
-  - `4col_2258_pinned.cnf` - "is this graph 4-colourable?" in DIMACS
-  - `4col_2258_pinned.drat` - DRAT refutation (31 MB)
-  - `drattrim_2258.log` - drat-trim output, `s VERIFIED`
-  - `col5_2258.json` - an explicit proper 5-colouring
-  - `diff_vs_2259.json` - the three edges that differ from `G*`
+- `shrink2259.py`, `drat2258.py` - the plateau search, and DRAT emission
+- `certificates/` - per graph: the DIMACS CNF, the DRAT refutation, the
+  drat-trim log, an explicit 5-colouring, and the edge-level diff against the
+  graph it came from
 
 ## References
 
