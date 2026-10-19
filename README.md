@@ -9,8 +9,8 @@ That DOI is Zenodo's *concept* DOI: it always resolves to the newest version, so
 it stays correct as the bound improves.  Each release also has its own version
 DOI if you need to pin to one specific graph.
 
-*(The repository is named after the first graph in it.  The current best is
-2251 edges; the name is kept so that links already in circulation keep working.)*
+*(This repository was briefly named `hadwiger-nelson-e5-2258`; GitHub redirects
+that URL here, so older links still work.)*
 
 ---
 
