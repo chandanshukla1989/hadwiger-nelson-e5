@@ -1,12 +1,12 @@
-# e5 <= 2258: a 5-chromatic unit-distance graph in the plane with 2258 edges
+# e5 <= 2257: a 5-chromatic unit-distance graph in the plane with 2257 edges
 
-This repository contains a 509-vertex, 2258-edge unit-distance graph in the
-Euclidean plane with chromatic number 5, together with everything needed to
-verify that claim independently.
+This repository contains 509-vertex unit-distance graphs in the Euclidean plane
+with chromatic number 5 and **2257** and **2258** edges, together with
+everything needed to verify those claims independently.
 
-It improves the previous best bound of **2259** edges (md-amer, 2026) by one
-edge, and the published bound of **2406** edges (de Grey and Parts, 2022) by
-148 edges.
+They improve the previous best bound of **2259** edges (md-amer, 2026) by two
+edges, and the published bound of **2406** edges (de Grey and Parts, 2022) by
+149 edges.
 
 ## Records for 5-chromatic unit-distance graphs in the plane
 
@@ -16,7 +16,8 @@ edge, and the published bound of **2406** edges (de Grey and Parts, 2022) by
 | Parts (2020), vertex-minimal | **509** | 2442 |
 | de Grey & Parts (2022), published e5 bound | 509 | 2406 |
 | md-amer (2026), submitted to Geombinatorics | 509 | 2259 |
-| **this graph** | 509 | **2258** |
+| this repository, first graph | 509 | 2258 |
+| **this repository, best** | 509 | **2257** |
 
 The vertex record of 509 (Parts, 2020) is untouched - this graph uses exactly
 Parts's 509 points.
@@ -41,7 +42,19 @@ plateau move : + (16, 202)              -> 2260 edges
 descent      : - (64, 124)              -> 2258 edges
 ```
 
-So this graph differs from `G*` in exactly three edges.
+So the 2258-edge graph differs from `G*` in exactly three edges.
+
+Repeating the same move on the 2258-edge graph gives one more edge:
+
+```
+plateau move : + (41, 263)              -> 2259 edges
+               - (49, 56)               -> 2258 edges, a different graph
+descent      : - (76, 197)              -> 2257 edges
+```
+
+The 2257-edge graph therefore differs from `G*` in six edges.  That the move
+worked twice, on two graphs that each passed every criticality test available,
+is the substance of the observation below.
 
 **The point worth taking away is methodological: edge-criticality is not
 optimality.** A graph can be edge-critical and a core fixpoint and still not be
@@ -54,22 +67,28 @@ edge list in this repository; nothing is taken on trust from the search.
 
 | # | check | result |
 |---|---|---|
-| 1 | 2258 edges, no duplicates, no self-loops | OK |
-| 2 | every edge at **exact** unit distance in Q(sqrt3, sqrt5, sqrt11) | OK, 2258/2258 |
+Both graphs pass the same nine checks; the figures below are for the 2257-edge
+graph, with the 2258-edge graph's certificates alongside in `certificates/`.
+
+| # | check | result |
+|---|---|---|
+| 1 | 2257 edges, no duplicates, no self-loops | OK |
+| 2 | every edge at **exact** unit distance in Q(sqrt3, sqrt5, sqrt11) | OK, 2257/2257 |
 | 3 | subgraph of Parts's published 2442-edge graph | OK |
 | 4 | 509 vertices, minimum degree 4 (so no vertex is removable) | OK |
-| 5 | distinct from `G*`: neither a subset nor a superset | OK, 3 edges differ |
-| 6 | chi >= 5: UNSAT with triangle (0,149,152) pinned to colours 0,1,2 | OK, 7s |
+| 5 | distinct from `G*`: neither a subset nor a superset | OK, 6 edges differ |
+| 6 | chi >= 5: UNSAT with a pinned triangle (all three of its edges present) | OK, 8s |
 | 7 | chi >= 5: UNSAT with **no** pin and no symmetry breaking at all | OK, 337s |
 | 8 | 5-colourable, so chi is exactly 5 | OK, 0 monochromatic edges |
-| 9 | DRAT refutation checked by **drat-trim** | **s VERIFIED**, 4.6s |
+| 9 | DRAT refutation checked by **drat-trim** | **s VERIFIED**, 5.8s |
 
 Check 2 is integer arithmetic over the 8-dimensional basis of
 Q(sqrt3, sqrt5, sqrt11) with all coordinates at denominator 96 - no floating
 point and no tolerance anywhere.  Check 9 is the one that matters to a third
 party, since drat-trim is not our code: it re-derived the refutation
-independently, reporting 8636 of 9544 clauses and 89090 of 161594 lemmas in the
-core over 5,401,810 resolution steps, with 0 RAT lemmas.
+independently, reporting 8637 of 9540 clauses and 99931 of 182297 lemmas in the
+core over 6,573,273 resolution steps, with 0 RAT lemmas (and 5,401,810 steps
+for the 2258-edge graph).
 
 As a by-product, md-amer's `G*` was itself re-verified here before being used as
 a base: exact unit distances, unpinned UNSAT, an explicit 5-colouring, and
@@ -87,7 +106,8 @@ drat-trim certificates/4col_2258_pinned.cnf certificates/4col_2258_pinned.drat
 
 ## Files
 
-- `edges2258.json` - the graph, as vertex-index pairs into `v509e2442.vtx`
+- `edges2257.json` - the best graph, as vertex-index pairs into `v509e2442.vtx`
+- `edges2258.json` - the intermediate 2258-edge graph
 - `v509e2442.vtx` - Parts's 509 points, algebraic coordinates, unchanged
 - `verify2258.py` - checks 1-8; trusts nothing from the search
 - `drat2258.py` - emits the DIMACS CNF and the DRAT refutation
