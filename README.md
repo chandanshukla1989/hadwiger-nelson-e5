@@ -1,12 +1,12 @@
-# e5 <= 2257: a 5-chromatic unit-distance graph in the plane with 2257 edges
+# e5 <= 2256: a 5-chromatic unit-distance graph in the plane with 2256 edges
 
 This repository contains 509-vertex unit-distance graphs in the Euclidean plane
 with chromatic number 5 and **2257** and **2258** edges, together with
 everything needed to verify those claims independently.
 
-They improve the previous best bound of **2259** edges (md-amer, 2026) by two
+They improve the previous best bound of **2259** edges (md-amer, 2026) by three
 edges, and the published bound of **2406** edges (de Grey and Parts, 2022) by
-149 edges.
+150 edges.
 
 ## Records for 5-chromatic unit-distance graphs in the plane
 
@@ -17,7 +17,8 @@ edges, and the published bound of **2406** edges (de Grey and Parts, 2022) by
 | de Grey & Parts (2022), published e5 bound | 509 | 2406 |
 | md-amer (2026), submitted to Geombinatorics | 509 | 2259 |
 | this repository, first graph | 509 | 2258 |
-| **this repository, best** | 509 | **2257** |
+| this repository | 509 | 2257 |
+| **this repository, best** | 509 | **2256** |
 
 The vertex record of 509 (Parts, 2020) is untouched - this graph uses exactly
 Parts's 509 points.
@@ -109,7 +110,8 @@ drat-trim certificates/4col_2258_pinned.cnf certificates/4col_2258_pinned.drat
 
 ## Files
 
-- `edges2257.json` - the best graph, as vertex-index pairs into `v509e2442.vtx`
+- `edges2256.json` - the best graph, as vertex-index pairs into `v509e2442.vtx`
+- `edges2257.json` - the 2257-edge graph
 - `edges2258.json` - the intermediate 2258-edge graph
 - `v509e2442.vtx` - Parts's 509 points, algebraic coordinates, unchanged
 - `verify2258.py` - checks 1-8; trusts nothing from the search
