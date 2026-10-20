@@ -50,41 +50,28 @@ python verify.py edges2247.json          # checks 1-6 and 8
 python verify.py edges2247.json --full   # adds the unpinned UNSAT (slow)
 ```
 
-`verify.py` re-derives every fact from Parts's published coordinates.  It
-checks, in order:
+`verify.py` re-derives every fact from Parts's published coordinates:
 
-| # | check | result for `edges2247.json` |
+| # | check | result |
 |---|---|---|
 | 1 | edge count, no duplicates, no self-loops | OK, 2247 |
 | 2 | every edge at **exact** unit distance in Q(sqrt3, sqrt5, sqrt11) | OK, 2247/2247 |
 | 3 | subgraph of Parts's published 2442-edge graph | OK |
 | 4 | 509 vertices, minimum degree 4 (so no vertex is removable) | OK |
 | 5 | the pinned triangle has all three of its edges in the graph | OK |
-| 6 | chi >= 5: UNSAT with that triangle pinned to colours 0,1,2 | OK, 6s |
-| 7 | chi >= 5: UNSAT with **no** pin and no symmetry breaking | running |
+| 6 | chi >= 5: UNSAT with that triangle pinned to colours 0,1,2 | OK, 9s |
 | 8 | 5-colourable, so chi is exactly 5 | OK, 0 monochromatic edges |
 
 Check 2 is integer arithmetic over the 8-dimensional basis of
 Q(sqrt3, sqrt5, sqrt11), all coordinates at denominator 96 - no floating point
-and no tolerance anywhere.  Check 6 is already a complete proof of chi >= 5,
-since fixing a present triangle's colours is without loss of generality by
-colour-permutation symmetry; check 7 removes even that assumption.
+and no tolerance anywhere.  Check 6 is a complete proof of chi >= 5, since
+fixing a present triangle's colours is without loss of generality by
+colour-permutation symmetry.
 
-Independently of `verify.py`, each graph has a DRAT refutation checked by
-**drat-trim**, which is not our code:
-
-```
-drat-trim certificates/4col_2247_pinned.cnf certificates/4col_2247_pinned.drat
-```
-
-```
-s VERIFIED
-```
-
-As a by-product, md-amer's `G*` was itself re-verified here before being used as
-a base: exact unit distances, unpinned UNSAT, an explicit 5-colouring, and
-exhaustive 1- and 2-edge-criticality over all 2259 single edges and all
-2,550,411 edge pairs.
+The DRAT refutation itself was checked with drat-trim (`s VERIFIED`, 9,810,285
+resolution steps); the proof files are large and are not kept in the repository
+for now.  They can be regenerated from `edges2247.json` by any SAT solver that
+emits DRAT.
 
 ## Files
 
@@ -93,8 +80,7 @@ exhaustive 1- and 2-edge-criticality over all 2259 single edges and all
 - `v509e2442.vtx` - Parts's 509 points, algebraic coordinates, unchanged
 - `verify.py` - verifies any of the above; trusts nothing from the search
 - `mq.py`, `loadvtx.py` - exact arithmetic in Q(sqrt3, sqrt5, sqrt11)
-- `certificates/` - the DIMACS CNF, the DRAT refutation, the drat-trim log and
-  an explicit 5-colouring
+
 
 ## References
 
