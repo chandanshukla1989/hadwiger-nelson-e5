@@ -6,8 +6,9 @@
 unit-distance graph*, 2026. DOI: [10.5281/zenodo.23462835](https://doi.org/10.5281/zenodo.23462835)
 
 That DOI is Zenodo's *concept* DOI: it always resolves to the newest version, so
-it stays correct as the bound improves.  Each release also has its own version
-DOI if you need to pin to one specific graph.
+it stays correct as the bound improves.  To pin to this exact graph instead, use
+the version DOI of release v1.10:
+[10.5281/zenodo.23507574](https://doi.org/10.5281/zenodo.23507574).
 
 *(This repository was briefly named `hadwiger-nelson-e5-2258`; GitHub redirects
 that URL here, so older links still work.)*
