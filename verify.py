@@ -13,8 +13,8 @@ from pysat.solvers import Cadical153
 path = sys.argv[1] if len(sys.argv) > 1 else 'edges2251.json'
 L, V = load_exact('v509e2442.vtx')
 E = [tuple(sorted(e)) for e in json.load(open(path))]
-PARTS = {tuple(sorted(e)) for e in json.load(open('certificates/parts_edges2442.json'))} \
-    if __import__('os').path.exists('certificates/parts_edges2442.json') else None
+PARTS = {tuple(sorted(e)) for e in json.load(open('parts_edges2442.json'))} \
+    if __import__('os').path.exists('parts_edges2442.json') else None
 
 print(f"verifying {path}")
 print("=" * 60)
