@@ -1,14 +1,14 @@
-# e5 <= 2245: 5-chromatic unit-distance graphs in the plane with few edges
+# e5 <= 2243: 5-chromatic unit-distance graphs in the plane with few edges
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23462835.svg)](https://doi.org/10.5281/zenodo.23462835)
 
-**Cite as:** Chandan Shukla, *e5 <= 2245: a 509-vertex, 2245-edge 5-chromatic
+**Cite as:** Chandan Shukla, *e5 <= 2243: a 509-vertex, 2243-edge 5-chromatic
 unit-distance graph*, 2026. DOI: [10.5281/zenodo.23462835](https://doi.org/10.5281/zenodo.23462835)
 
 That DOI is Zenodo's *concept* DOI: it always resolves to the newest version, so
 it stays correct as the bound improves.  To pin to this exact graph instead, use
-the version DOI of release v1.10:
-[10.5281/zenodo.23507574](https://doi.org/10.5281/zenodo.23507574).
+the version DOI of release v1.11, shown on the Zenodo record the badge
+above links to.
 
 *(This repository was briefly named `hadwiger-nelson-e5-2258`; GitHub redirects
 that URL here, so older links still work.)*
@@ -16,7 +16,7 @@ that URL here, so older links still work.)*
 ---
 
 A 509-vertex unit-distance graph in the Euclidean plane with chromatic number 5
-and **2245 edges**, together with everything needed to verify that claim
+and **2243 edges**, together with everything needed to verify that claim
 independently.
 
 ## Records for 5-chromatic unit-distance graphs in the plane
@@ -27,9 +27,9 @@ independently.
 | Parts (2020), vertex-minimal | **509** | 2442 |
 | de Grey & Parts (2022), published e5 bound | 509 | 2406 |
 | md-amer (2026), submitted to Geombinatorics | 509 | 2259 |
-| **this repository** | 509 | **2245** |
+| **this repository** | 509 | **2243** |
 
-That is **161 edges** below the published bound and **14** below the previous
+That is **163 edges** below the published bound and **16** below the previous
 best.  The vertex record of 509 (Parts, 2020) is untouched: every graph here
 uses exactly Parts's 509 points.
 
@@ -47,20 +47,20 @@ proofs.  None of that needs the method.
 
 ```
 pip install sympy python-sat[pblib,aiger]
-python verify.py edges2245.json          # checks 1-6 and 8
-python verify.py edges2245.json --full   # adds the unpinned UNSAT (slow)
+python verify.py edges2243.json          # checks 1-6 and 8
+python verify.py edges2243.json --full   # adds the unpinned UNSAT (slow)
 ```
 
 `verify.py` re-derives every fact from Parts's published coordinates:
 
 | # | check | result |
 |---|---|---|
-| 1 | edge count, no duplicates, no self-loops | OK, 2245 |
-| 2 | every edge at **exact** unit distance in Q(sqrt3, sqrt5, sqrt11) | OK, 2245/2245 |
+| 1 | edge count, no duplicates, no self-loops | OK, 2243 |
+| 2 | every edge at **exact** unit distance in Q(sqrt3, sqrt5, sqrt11) | OK, 2243/2243 |
 | 3 | subgraph of Parts's published 2442-edge graph | OK |
 | 4 | 509 vertices, minimum degree 4 (so no vertex is removable) | OK |
 | 5 | the pinned triangle has all three of its edges in the graph | OK |
-| 6 | chi >= 5: UNSAT with that triangle pinned to colours 0,1,2 | OK, 6s |
+| 6 | chi >= 5: UNSAT with that triangle pinned to colours 0,1,2 | OK, 9s |
 | 8 | 5-colourable, so chi is exactly 5 | OK, 0 monochromatic edges |
 
 Check 2 is integer arithmetic over the 8-dimensional basis of
@@ -69,14 +69,14 @@ and no tolerance anywhere.  Check 6 is a complete proof of chi >= 5, since
 fixing a present triangle's colours is without loss of generality by
 colour-permutation symmetry.
 
-The DRAT refutation itself was checked with drat-trim (`s VERIFIED`, 7,286,735
-resolution steps, 113,783 of 195,632 lemmas in core); the proof files are large
-and are not kept in the repository for now.  They can be regenerated from `edges2245.json` by any SAT solver that
+The DRAT refutation itself was checked with drat-trim (`s VERIFIED`, 10,323,668
+resolution steps, 150,322 of 236,737 lemmas in core); the proof files are large
+and are not kept in the repository for now.  They can be regenerated from `edges2243.json` by any SAT solver that
 emits DRAT.
 
 ## Files
 
-- `edges2245.json` - the graph, as vertex-index pairs into `v509e2442.vtx`
+- `edges2243.json` - the graph, as vertex-index pairs into `v509e2442.vtx`
 - `v509e2442.vtx` - Parts's 509 points, algebraic coordinates, unchanged
 - `parts_edges2442.json` - Parts's published 2442 edges, unchanged (for check 3)
 - `verify.py` - verifies any of the above; trusts nothing from the search
